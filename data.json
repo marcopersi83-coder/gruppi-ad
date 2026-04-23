@@ -16,7 +16,6 @@
     "Organization Management",
     "Remote Management Users"
   ],
-
   "Pomezia": [
     "All_at_Pomezia_Employees",
     "AS-SPPS-Users",
@@ -29,7 +28,6 @@
     "Totem",
     "Al-Vpn-Users"
   ],
-
   "Bologna": [
     "All_at_Bologna_Employees",
     "AS-SPPS-Users",
@@ -42,7 +40,6 @@
     "Totem",
     "Al-Vpn-Users"
   ],
-
   "Milano": [
     "All_at_Milano_Employees",
     "AS-SPPS-Users",
@@ -55,7 +52,6 @@
     "Totem",
     "Al-Vpn-Users"
   ],
-
   "Alanno": [
     "All_at_Alanno_Employees",
     "AS-SPPS-Users",
@@ -68,7 +64,6 @@
     "Totem",
     "Al-Vpn-Users"
   ],
-
   "Trezzano": [
     "All_at_TrezzanoRosa_Employees",
     "IT07-UMB-Basic",
@@ -78,7 +73,6 @@
     "Totem",
     "VPNUsersFortinet"
   ],
-
   "Sermoneta": [
     "All_at_Sermoneta_Employees",
     "IT05-UMB-Basic",
@@ -88,7 +82,6 @@
     "IT05-Wireless-Users",
     "IT05-WS-Basic"
   ],
-
   "Polonia": [
     "All_at_Poland_Users",
     "AS-SPPS-Users",
@@ -100,7 +93,6 @@
     "Totem",
     "Al-Vpn-Users"
   ],
-
   "CZ": [
     "All_at_Czech_Users",
     "AS-SPPS-Users",
@@ -112,7 +104,6 @@
     "Totem",
     "Al-Vpn-Users"
   ],
-
   "Francia": [
     "AS-SPPS-Users",
     "FR01-UMB-Basic",
@@ -123,7 +114,6 @@
     "Totem",
     "Al-Vpn-Users"
   ],
-
   "Germania": [
     "All_at_Germany",
     "DE01 Local Users",
@@ -133,7 +123,6 @@
     "Totem",
     "Al-Vpn-Users"
   ],
-
   "Spagna": [
     "All_at_Spain_Users",
     "AL-VPN-Users",
@@ -143,7 +132,6 @@
     "ES01-VPN-Users",
     "ES01-Wireless-Users"
   ],
-
   "UK": [
     "Alfasigma_Belgium_Employees",
     "All_at_Jyseleca_Abroad",
@@ -153,7 +141,6 @@
     "MDM",
     "IT00-CA-Require_MFA_For_Internal_Users_Include"
   ],
-
   "Messico": [
     "All_at_Mexico_Users",
     "MX01-UMB-Basic",
@@ -162,7 +149,6 @@
     "MX01-VPN-Users",
     "MX01-Wireless-Users"
   ],
-
   "Ungheria": [
     "All_At_Hungary_Employees",
     "AL-VPN-Users",
@@ -170,19 +156,16 @@
     "MDM",
     "MDM_Veeva_CRM"
   ],
-
   "Reply": [
     "Consultants",
     "VPN_Reply",
     "IT00-CA-Require_MFA_For_External_Users_Include"
   ],
-
   "Accenture": [
     "Consultants",
     "VPN_Accenture",
     "IT00-CA-Require_MFA_For_External_Users_Include"
   ],
-
   "KPMG": [
     "Consultants",
     "VPN_KPMG",
@@ -190,4 +173,3 @@
     "IT00-CA-Require_MFA_For_External_Users_Include"
   ]
 }
-``
