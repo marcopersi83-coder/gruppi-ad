@@ -1,6 +1,5 @@
 ﻿{
     "Portogallo":  [
-                       "Gruppi Base Portogallo",
                        "All_at_portugal_",
                        "PT01 Local Users",
                        "PT01_MFA_Users",
@@ -11,7 +10,6 @@
                        "MDM_LastPass"
                    ],
     "Alanno":  [
-                   "Gruppi Base Alanno",
                    "All_at_Alanno_Employees",
                    "AS-SPPS-Users",
                    "IT02-UMB-Basic",
@@ -27,7 +25,6 @@
                    "MDM_LastPass"
                ],
     "Polonia":  [
-                    "Gruppi Base Polonia",
                     "All_at_Poland_Users",
                     "AS-SPPS-Users",
                     "PL01-UMB-Basic",
@@ -42,13 +39,11 @@
                     "MDM_LastPass"
                 ],
     "Accenture":  [
-                      "Accenture",
                       "Consultants",
                       "IT00-CA-Require_MFA_For_External_Users_Include",
                       "VPN_Accenture"
                   ],
     "Romania":  [
-                    "Gruppi Base Romania",
                     "All_at_Romania_Users",
                     "AS-SPPS-Users;",
                     "RO01-UMB-Basic;",
@@ -63,7 +58,6 @@
                     "MDM_LastPass"
                 ],
     "Messico":  [
-                    "Gruppi Base Messico",
                     "All_at_Mexico_Users",
                     "All_Employees_PM 2022_International",
                     "MDM",
@@ -80,7 +74,6 @@
                     "MDM_LastPass"
                 ],
     "Belgio Olanda":  [
-                          "Gruppi Base Belgio/olanda",
                           "administration_lei",
                           "Alfasigma_Belgium_Employees",
                           "All_at_Jyseleca_Abroad",
@@ -96,7 +89,6 @@
                           "MDM_LastPass"
                       ],
     "Sermoneta":  [
-                      "Gruppi Base Sermoneta",
                       "All_at_Sermoneta_Employees",
                       "IT05 Local Users",
                       "IT05_MFA_Users",
@@ -108,7 +100,6 @@
                       "MDM_LastPass"
                   ],
     "KPMG":  [
-                 "KPMG",
                  "AL-SCCM-Report",
                  "Consultants",
                  "Fleet_2025_2026",
@@ -117,7 +108,6 @@
                  "VPN_KPMG"
              ],
     "Admin IET":  [
-                      "ADMIN IET",
                       "Account Operators",
                       "AdminsFileShare",
                       "AL-KLAdmins",
@@ -177,7 +167,6 @@
                       "T2-CLIENT_ADMIN_WORKPLACE"
                   ],
     "Spagna":  [
-                   "Gruppi Base Spagna",
                    "All_at_Spain_Barcelona_Users",
                    "All_at_Spain_Users",
                    "AL-VPN-Users",
@@ -192,14 +181,12 @@
                    "MDM_LastPass"
                ],
     "Reply":  [
-                  "Gruppi Base Reply",
                   "Consultants",
                   "IT00-CA-Require_MFA_For_External_Users_Include",
                   "IT00-Empower-AVD",
                   "VPN_Reply"
               ],
     "Pomezia":  [
-                    "Gruppi base Pomezia",
                     "All_at_Pomezia_Employees",
                     "AS-SPPS-Users",
                     "IT04-UMB-Basic",
@@ -215,7 +202,6 @@
                     "MDM_LastPass"
                 ],
     "Ungheria":  [
-                     "Gruppi Base Ungheria",
                      "All_At_Hungary_Employees",
                      "AL-VPN-Users",
                      "HU01_MFA_Users",
@@ -228,7 +214,6 @@
                      "MDM_LastPass"
                  ],
     "UK":  [
-               "Gruppi Base UK",
                "administration_lei",
                "Alfasigma_Belgium_Employees",
                "All_at_Jyseleca_Abroad",
@@ -243,7 +228,6 @@
                "MDM_LastPass"
            ],
     "Milano":  [
-                   "Gruppi Base Milano",
                    "All_at_Milano_Employees",
                    "AS-SPPS-Users",
                    "IT03-UMB-Basic",
@@ -259,7 +243,6 @@
                    "MDM_LastPass"
                ],
     "Trezzano":  [
-                     "Gruppi Base Trezzanno",
                      "All_at_TrezzanoRosa_Employees",
                      "All_at_TrezzanoRosa_Sofar",
                      "IT07 Local Users",
@@ -277,7 +260,6 @@
                      "MDM_LastPass"
                  ],
     "Germania":  [
-                     "GRUPPI BASE GERMANIA",
                      "Alfasigma_De_all-",
                      "Alfasigma_DE_Field",
                      "All_at_Germany",
@@ -293,7 +275,6 @@
                      "MDM_LastPass"
                  ],
     "Francia":  [
-                    "Gruppi base Francia",
                     "AS-SPPS-Users",
                     "FR01-UMB-Basic",
                     "FR01 Local Users",
@@ -306,7 +287,6 @@
                     "MDM_LastPass"
                 ],
     "Cina":  [
-                 "Gruppi Base Cina",
                  "All_at_china_Users",
                  "AL-VPN-Users",
                  "Cn01 local users",
@@ -333,7 +313,6 @@
                  "MDM_LastPass"
              ],
     "CZ":  [
-               "Gruppi Base CZ",
                "All_at_Czech_Users",
                "AS-SPPS-Users",
                "CZ01-UMB-Basic",
@@ -347,7 +326,6 @@
                "MDM_LastPass"
            ],
     "Galapagos":  [
-                      "Gruppi Galapagos",
                       "Alfasigma_Belgium_Employees",
                       "All_at_Jyseleca_Abroad",
                       "AL-VPN-Users",
@@ -364,7 +342,6 @@
                       "IT00-CA-Require_MFA_For_Internal_Users_Include"
                   ],
     "Bologna":  [
-                    "Gruppi Base Bologna",
                     "All_at_Bologna_Employees",
                     "AS-SPPS-Users",
                     "IT01-UMB-Basic",
