@@ -1,37 +1,3 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-  <meta charset="UTF-8">
-  <title>Gruppi AD</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 0; display: flex; }
-    nav { width: 250px; background: #2c3e50; color: white; padding: 10px; }
-    nav button {
-      width: 100%;
-      margin: 4px 0;
-      padding: 8px;
-      background: #34495e;
-      color: white;
-      border: none;
-      cursor: pointer;
-      text-align: left;
-    }
-    nav button:hover { background: #1abc9c; }
-    main { flex: 1; padding: 20px; }
-    input { width: 100%; padding: 8px; margin-bottom: 10px; }
-    li { padding: 4px 0; font-family: monospace; }
-  </style>
-</head>
-<body>
-
-<nav id="menu"></nav>
-
-<main>
-  <h2>Gruppi AD</h2>
-  <input id="search" placeholder="Cerca gruppo...">
-  <ul id="list"></ul>
-</main>
-
 <script>
 fetch('./data.json')
   .then(r => {
@@ -39,24 +5,28 @@ fetch('./data.json')
     return r.json();
   })
   .then(data => {
-    console.log("JSON caricato correttamente", data);
 
     const menu = document.getElementById('menu');
     const list = document.getElementById('list');
     const search = document.getElementById('search');
-    let corrente = [];
+    const copyBtn = document.getElementById('copyBtn');
+    const title = document.getElementById('title');
+
+    let currentGroups = [];
 
     Object.keys(data).forEach(sede => {
       const b = document.createElement('button');
       b.textContent = sede;
-      b.onclick = () => mostra(data[sede]);
+      b.onclick = () => showSede(sede, data[sede]);
       menu.appendChild(b);
     });
 
-    function mostra(arr) {
-      corrente = arr;
-      render(arr);
+    function showSede(nome, gruppi) {
+      currentGroups = gruppi;
+      title.textContent = "Gruppi AD – " + nome;
       search.value = "";
+      render(gruppi);
+      copyBtn.disabled = false;
     }
 
     function render(arr) {
@@ -70,6 +40,21 @@ fetch('./data.json')
 
     search.oninput = () => {
       const q = search.value.toLowerCase();
-      render(corrente.filter(x => x.toLowerCase().includes(q)));
+      render(currentGroups.filter(x => x.toLowerCase().includes(q)));
     };
+
+    copyBtn.onclick = () => {
+      if (currentGroups.length === 0) return;
+      const text = currentGroups.join("\n");
+      navigator.clipboard.writeText(text)
+        .then(() => alert("✅ Gruppi copiati negli appunti"))
+        .catch(err => alert("❌ Errore nella copia"));
+    };
+
   })
+  .catch(e => {
+    document.body.innerHTML =
+      "<h2>Errore nel caricamento dati</h2><pre>" + e + "</pre>";
+  });
+</script>
+``
