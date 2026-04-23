@@ -13,13 +13,41 @@
       background-color: #f5f6f8;
     }
 
+    /* ===== Tabs ===== */
+    #tabs {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 280px;
+      display: flex;
+      background: #111827;
+      z-index: 10;
+    }
+
+    #tabs button {
+      flex: 1;
+      padding: 10px;
+      background: transparent;
+      border: none;
+      color: #9ca3af;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    #tabs button.active {
+      background: #1f2937;
+      color: white;
+    }
+
     /* ===== Sidebar ===== */
     nav {
       width: 280px;
       background: #1f2937;
-      color: #ffffff;
+      color: white;
       padding: 16px;
+      padding-top: 56px;
       overflow-y: auto;
+      box-sizing: border-box;
     }
 
     nav h2 {
@@ -53,6 +81,8 @@
       flex: 1;
       padding: 24px;
       overflow-y: auto;
+      margin-left: 280px;
+      box-sizing: border-box;
     }
 
     h2 {
@@ -114,14 +144,20 @@
 
 <body>
 
+  <!-- ===== Tabs ===== -->
+  <div id="tabs">
+    <button class="tab active" data-type="internal">🏢 Sedi interne</button>
+    <button class="tab" data-type="external">🧩 Società esterne</button>
+  </div>
+
   <!-- ===== Sidebar ===== -->
   <nav id="menu">
     <h2>Sedi</h2>
   </nav>
 
-  <!-- ===== Main content ===== -->
+  <!-- ===== Main ===== -->
   <main>
-    <h2 id="title">Gruppi AD</h2>
+    <h2 id="title">Sedi interne</h2>
 
     <div class="toolbar">
       <input id="search" placeholder="Cerca gruppo...">
@@ -144,33 +180,49 @@
         const title = document.getElementById('title');
 
         let currentGroups = [];
+        let internal = {};
+        let external = {};
 
-        // Ordina le sedi
-        Object.keys(data)
-          .sort((a, b) => a.localeCompare(b))
-          .forEach(sede => {
-            const btn = document.createElement('button');
-            btn.textContent = sede;
+        function isExternal(name) {
+          return name.toLowerCase().includes("ext");
+        }
 
-            btn.onclick = () => {
-              document
-                .querySelectorAll("nav button")
-                .forEach(b => b.classList.remove("active"));
+        Object.keys(data).forEach(key => {
+          if (isExternal(key)) {
+            const cleanName = key.replace(/\s*ext\s*/i, "").trim();
+            external[cleanName] = data[key];
+          } else {
+            internal[key] = data[key];
+          }
+        });
 
-              btn.classList.add("active");
-              showSede(sede, data[sede]);
-            };
+        function loadMenu(source) {
+          menu.innerHTML = "<h2>Sedi</h2>";
 
-            menu.appendChild(btn);
-          });
+          Object.keys(source)
+            .sort((a,b) => a.localeCompare(b))
+            .forEach(name => {
+              const btn = document.createElement("button");
+              btn.textContent = name;
+
+              btn.onclick = () => {
+                document
+                  .querySelectorAll("nav button")
+                  .forEach(b => b.classList.remove("active"));
+
+                btn.classList.add("active");
+                showSede(name, source[name]);
+              };
+
+              menu.appendChild(btn);
+            });
+        }
 
         function showSede(nome, gruppi) {
           currentGroups = [...gruppi].sort((a, b) => a.localeCompare(b));
-
-          title.textContent = `Gruppi AD – ${nome} (${currentGroups.length})`;
+          title.textContent = `${nome} (${currentGroups.length})`;
           search.value = "";
           copyBtn.disabled = false;
-
           render(currentGroups);
         }
 
@@ -192,6 +244,26 @@
           navigator.clipboard.writeText(currentGroups.join("\n"))
             .then(() => alert("✅ Gruppi copiati negli appunti"));
         };
+
+        document.querySelectorAll(".tab").forEach(tab => {
+          tab.onclick = () => {
+            document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+            tab.classList.add("active");
+
+            list.innerHTML = "";
+            copyBtn.disabled = true;
+
+            if (tab.dataset.type === "external") {
+              title.textContent = "Società esterne";
+              loadMenu(external);
+            } else {
+              title.textContent = "Sedi interne";
+              loadMenu(internal);
+            }
+          };
+        });
+
+        loadMenu(internal);
       });
   </script>
 
