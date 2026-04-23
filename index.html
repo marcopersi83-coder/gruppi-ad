@@ -299,9 +299,9 @@
           render(currentGroups.filter(g => g.toLowerCase().includes(q)));
         };
 
-        copyBtn.onclick = () =>
-          navigator.clipboard.writeText(currentGroups.join("\n"))
-            .then(() => alert("✅ Gruppi copiati negli appunti"));
+     copyBtn.onclick = () =>
+  navigator.clipboard.writeText(currentGroups.join("\r\n"))
+    .then(() => alert("✅ Gruppi copiati negli appunti"));
 
         document.querySelectorAll(".tab").forEach(tab => {
           tab.onclick = () => {
