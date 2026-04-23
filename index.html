@@ -33,27 +33,34 @@
 fetch('./data.json')
   .then(r => r.json())
   .then(data => {
+
     const menu = document.getElementById('menu');
     const list = document.getElementById('list');
     const search = document.getElementById('search');
     const copyBtn = document.getElementById('copyBtn');
     const title = document.getElementById('title');
-    let current = [];
 
-    Object.keys(data).forEach(sede => {
-      const b = document.createElement('button');
-      b.textContent = sede;
-      b.onclick = () => show(sede, data[sede]);
-      menu.appendChild(b);
-    });
+    let currentGroups = [];
 
-    function show(nome, gruppi) {
-  current = [...gruppi].sort((a, b) => a.localeCompare(b));
-  title.textContent = "Gruppi AD – " + nome;
-  search.value = "";
-  copyBtn.disabled = false;
-  render(current);
-}
+    // ✅ ORDINA LE SEDI (menu a sinistra)
+    Object.keys(data)
+      .sort((a, b) => a.localeCompare(b))
+      .forEach(sede => {
+        const btn = document.createElement('button');
+        btn.textContent = sede;
+        btn.onclick = () => showSede(sede, data[sede]);
+        menu.appendChild(btn);
+      });
+
+    function showSede(nome, gruppi) {
+      // ✅ ORDINA I GRUPPI A–Z
+      currentGroups = [...gruppi].sort((a, b) => a.localeCompare(b));
+      title.textContent = "Gruppi AD – " + nome;
+      search.value = "";
+      copyBtn.disabled = false;
+      render(currentGroups);
+    }
+
     function render(arr) {
       list.innerHTML = "";
       arr.forEach(g => {
@@ -65,15 +72,16 @@ fetch('./data.json')
 
     search.oninput = () => {
       const q = search.value.toLowerCase();
-      render(current.filter(g => g.toLowerCase().includes(q)));
+      render(currentGroups.filter(g => g.toLowerCase().includes(q)));
     };
 
     copyBtn.onclick = () => {
-      navigator.clipboard.writeText(current.join("\n"))
-        .then(() => alert("✅ Gruppi copiati"));
+      navigator.clipboard.writeText(currentGroups.join("\n"))
+        .then(() => alert("✅ Gruppi copiati negli appunti"));
     };
   });
 </script>
+
 
 </body>
 </html>
