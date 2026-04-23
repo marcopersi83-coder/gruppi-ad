@@ -13,46 +13,54 @@
       background-color: #f5f6f8;
     }
 
-    /* ===== Tabs ===== */
+    /* =======================
+       TAB SUPERIORI
+    ======================= */
     #tabs {
       position: fixed;
       top: 0;
       left: 0;
-      width: 280px;
+      width: 270px;
+      height: 44px;
       display: flex;
       background: #111827;
-      z-index: 10;
+      z-index: 20;
     }
 
     #tabs button {
       flex: 1;
-      padding: 10px;
       background: transparent;
       border: none;
       color: #9ca3af;
-      cursor: pointer;
       font-size: 13px;
+      cursor: pointer;
     }
 
     #tabs button.active {
-      background: #1f2937;
       color: white;
+      background: #1f2937;
+      font-weight: 500;
     }
 
-    /* ===== Sidebar ===== */
+    /* =======================
+       SIDEBAR
+    ======================= */
     nav {
-      width: 280px;
+      position: fixed;
+      top: 44px;
+      left: 0;
+      width: 270px;
+      height: calc(100vh - 44px);
       background: #1f2937;
       color: white;
-      padding: 16px;
-      padding-top: 56px;
-      overflow-y: auto;
+      padding: 8px;
       box-sizing: border-box;
+      overflow-y: auto;
     }
 
     nav h2 {
-      margin-top: 0;
-      font-size: 13px;
+      margin: 8px 6px;
+      font-size: 12px;
       text-transform: uppercase;
       letter-spacing: 1px;
       color: #9ca3af;
@@ -60,14 +68,20 @@
 
     nav button {
       width: 100%;
-      padding: 10px 12px;
-      margin: 4px 0;
+      padding: 6px 10px;
+      margin: 2px 0;
       background: transparent;
       color: #e5e7eb;
       border: none;
       border-radius: 4px;
       cursor: pointer;
       text-align: left;
+      font-size: 13px;
+    }
+
+    /* zebra */
+    nav button:nth-child(even) {
+      background-color: rgba(255, 255, 255, 0.03);
     }
 
     nav button:hover,
@@ -75,17 +89,19 @@
       background: #374151;
     }
 
-    /* ===== Main ===== */
+    /* =======================
+       MAIN
+    ======================= */
     main {
+      margin-left: 270px;
+      padding: 16px 20px;
       flex: 1;
-      padding: 24px;
-      margin-left: 280px;
       box-sizing: border-box;
       overflow-y: auto;
     }
 
     .header {
-      margin-bottom: 20px;
+      margin-bottom: 14px;
     }
 
     .header h2 {
@@ -94,32 +110,37 @@
     }
 
     .header small {
-      color: #6b7280;
       font-size: 13px;
+      color: #6b7280;
     }
 
+    /* =======================
+       TOOLBAR
+    ======================= */
     .toolbar {
       display: flex;
-      gap: 12px;
-      margin-bottom: 16px;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 12px;
     }
 
     input {
       flex: 1;
-      padding: 8px 10px;
+      padding: 6px 8px;
       border-radius: 4px;
       border: 1px solid #d1d5db;
-      font-size: 14px;
+      font-size: 13px;
     }
 
     button.copy {
-      padding: 8px 14px;
+      padding: 6px 12px;
       background: #2563eb;
       color: white;
       border: none;
       border-radius: 4px;
       cursor: pointer;
-      font-size: 14px;
+      font-size: 13px;
+      white-space: nowrap;
     }
 
     button.copy:disabled {
@@ -127,16 +148,18 @@
       cursor: not-allowed;
     }
 
-    /* ===== Card ===== */
+    /* =======================
+       CARD + LISTA
+    ======================= */
     .card {
       background: white;
-      border-radius: 8px;
       border: 1px solid #e5e7eb;
-      padding: 16px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+      border-radius: 8px;
+      padding: 14px;
+      max-width: 1100px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
     }
 
-    /* ===== List ===== */
     ul {
       list-style: none;
       padding: 0;
@@ -144,7 +167,7 @@
     }
 
     li {
-      padding: 8px 12px;
+      padding: 6px 10px;
       border-bottom: 1px solid #e5e7eb;
       font-family: Consolas, monospace;
       font-size: 13px;
@@ -160,28 +183,28 @@
     }
 
     .empty {
+      margin-top: 20px;
       text-align: center;
       color: #9ca3af;
-      padding: 40px;
-      font-size: 14px;
+      font-size: 13px;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- ===== Tabs ===== -->
+  <!-- TAB -->
   <div id="tabs">
     <button class="tab active" data-type="internal">🏢 Sedi interne</button>
     <button class="tab" data-type="external">🧩 Società esterne</button>
   </div>
 
-  <!-- ===== Sidebar ===== -->
+  <!-- SIDEBAR -->
   <nav id="menu">
     <h2>Sedi</h2>
   </nav>
 
-  <!-- ===== Main ===== -->
+  <!-- MAIN -->
   <main>
     <div class="header">
       <h2 id="title">Sedi interne</h2>
@@ -195,13 +218,13 @@
 
     <div class="card">
       <ul id="list"></ul>
-      <div id="empty" class="empty" style="display:none;">
+      <div id="empty" class="empty" style="display:none">
         Nessun gruppo disponibile
       </div>
     </div>
   </main>
 
-  <!-- ===== Script ===== -->
+  <!-- SCRIPT -->
   <script>
     fetch('./data.json')
       .then(r => r.json())
@@ -219,11 +242,7 @@
         let external = {};
 
         function normalizeName(name) {
-          return name
-            .normalize("NFKD")
-            .replace(/\s+/g, " ")
-            .trim()
-            .toLowerCase();
+          return name.normalize("NFKD").replace(/\s+/g, " ").trim().toLowerCase();
         }
 
         function isExternal(name) {
@@ -232,13 +251,8 @@
 
         Object.keys(data).forEach(key => {
           if (isExternal(key)) {
-            const cleanName = key
-              .normalize("NFKD")
-              .replace(/\bext\b/i, "")
-              .replace(/\s+/g, " ")
-              .trim();
-
-            external[cleanName] = data[key];
+            const clean = key.replace(/\bext\b/i, "").replace(/\s+/g, " ").trim();
+            external[clean] = data[key];
           } else {
             internal[key] = data[key];
           }
@@ -247,28 +261,23 @@
         function loadMenu(source) {
           menu.innerHTML = "<h2>Sedi</h2>";
 
-          Object.keys(source)
-            .sort((a,b) => a.localeCompare(b))
-            .forEach(name => {
-              const btn = document.createElement("button");
-              btn.textContent = name;
+          Object.keys(source).sort().forEach(name => {
+            const btn = document.createElement("button");
+            btn.textContent = name;
 
-              btn.onclick = () => {
-                document
-                  .querySelectorAll("nav button")
-                  .forEach(b => b.classList.remove("active"));
+            btn.onclick = () => {
+              document.querySelectorAll("nav button").forEach(b => b.classList.remove("active"));
+              btn.classList.add("active");
+              showSede(name, source[name]);
+            };
 
-                btn.classList.add("active");
-                showSede(name, source[name]);
-              };
-
-              menu.appendChild(btn);
-            });
+            menu.appendChild(btn);
+          });
         }
 
-        function showSede(nome, gruppi) {
-          currentGroups = [...gruppi].sort((a, b) => a.localeCompare(b));
-          title.textContent = `${nome} (${currentGroups.length})`;
+        function showSede(name, groups) {
+          currentGroups = [...groups].sort();
+          title.textContent = `${name} (${currentGroups.length})`;
           search.value = "";
           copyBtn.disabled = false;
           render(currentGroups);
@@ -290,27 +299,21 @@
           render(currentGroups.filter(g => g.toLowerCase().includes(q)));
         };
 
-        copyBtn.onclick = () => {
+        copyBtn.onclick = () =>
           navigator.clipboard.writeText(currentGroups.join("\n"))
             .then(() => alert("✅ Gruppi copiati negli appunti"));
-        };
 
         document.querySelectorAll(".tab").forEach(tab => {
           tab.onclick = () => {
             document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
             tab.classList.add("active");
-
             list.innerHTML = "";
             empty.style.display = "none";
             copyBtn.disabled = true;
 
-            if (tab.dataset.type === "external") {
-              title.textContent = "Società esterne";
-              loadMenu(external);
-            } else {
-              title.textContent = "Sedi interne";
-              loadMenu(internal);
-            }
+            tab.dataset.type === "external"
+              ? (title.textContent = "Società esterne", loadMenu(external))
+              : (title.textContent = "Sedi interne", loadMenu(internal));
           };
         });
 
@@ -320,4 +323,3 @@
 
 </body>
 </html>
-``
