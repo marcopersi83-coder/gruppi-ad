@@ -48,13 +48,12 @@ fetch('./data.json')
     });
 
     function show(nome, gruppi) {
-      current = gruppi;
-      title.textContent = "Gruppi AD – " + nome;
-      search.value = "";
-      copyBtn.disabled = false;
-      render(gruppi);
-    }
-
+  current = [...gruppi].sort((a, b) => a.localeCompare(b));
+  title.textContent = "Gruppi AD – " + nome;
+  search.value = "";
+  copyBtn.disabled = false;
+  render(current);
+}
     function render(arr) {
       list.innerHTML = "";
       arr.forEach(g => {
