@@ -3,85 +3,197 @@
 <head>
   <meta charset="UTF-8">
   <title>Gruppi AD</title>
+
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; display: flex; height: 100vh; }
-    nav { width: 260px; background: #2c3e50; color: white; padding: 10px; overflow-y: auto; }
-    nav h2 { margin-top: 0; font-size: 16px; }
-    nav button { width: 100%; padding: 8px; margin: 4px 0; background: #34495e; color: white; border: none; cursor: pointer; text-align: left; }
-    nav button:hover { background: #1abc9c; }
-    main { flex: 1; padding: 20px; overflow-y: auto; }
-    input { width: 100%; padding: 8px; margin-bottom: 10px; }
-    button.copy { margin-bottom: 10px; padding: 8px; cursor: pointer; }
-    ul { list-style: none; padding: 0; }
-    li { padding: 4px 0; border-bottom: 1px solid #ddd; font-family: monospace; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      display: flex;
+      height: 100vh;
+      background-color: #f5f6f8;
+    }
+
+    /* ===== Sidebar ===== */
+    nav {
+      width: 280px;
+      background: #1f2937;
+      color: #ffffff;
+      padding: 16px;
+      overflow-y: auto;
+    }
+
+    nav h2 {
+      margin-top: 0;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #9ca3af;
+    }
+
+    nav button {
+      width: 100%;
+      padding: 10px 12px;
+      margin: 4px 0;
+      background: transparent;
+      color: #e5e7eb;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.2s;
+    }
+
+    nav button:hover,
+    nav button.active {
+      background: #374151;
+    }
+
+    /* ===== Main ===== */
+    main {
+      flex: 1;
+      padding: 24px;
+      overflow-y: auto;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-weight: 500;
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    input {
+      flex: 1;
+      padding: 8px 10px;
+      border-radius: 4px;
+      border: 1px solid #d1d5db;
+      font-size: 14px;
+    }
+
+    button.copy {
+      padding: 8px 14px;
+      background: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    button.copy:disabled {
+      background: #9ca3af;
+      cursor: not-allowed;
+    }
+
+    /* ===== List ===== */
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      background: white;
+      border-radius: 6px;
+      border: 1px solid #e5e7eb;
+    }
+
+    li {
+      padding: 8px 12px;
+      border-bottom: 1px solid #e5e7eb;
+      font-family: Consolas, monospace;
+      font-size: 13px;
+    }
+
+    li:last-child {
+      border-bottom: none;
+    }
   </style>
 </head>
+
 <body>
 
-<nav id="menu">
-  <h2>Sedi</h2>
-</nav>
+  <!-- ===== Sidebar ===== -->
+  <nav id="menu">
+    <h2>Sedi</h2>
+  </nav>
 
-<main>
-  <h2 id="title">Gruppi AD</h2>
-  <button class="copy" id="copyBtn" disabled>📋 Copia gruppi</button>
-  <input id="search" placeholder="Cerca gruppo...">
-  <ul id="list"></ul>
-</main>
+  <!-- ===== Main content ===== -->
+  <main>
+    <h2 id="title">Gruppi AD</h2>
 
-<script>
-fetch('./data.json')
-  .then(r => r.json())
-  .then(data => {
+    <div class="toolbar">
+      <input id="search" placeholder="Cerca gruppo...">
+      <button class="copy" id="copyBtn" disabled>📋 Copia</button>
+    </div>
 
-    const menu = document.getElementById('menu');
-    const list = document.getElementById('list');
-    const search = document.getElementById('search');
-    const copyBtn = document.getElementById('copyBtn');
-    const title = document.getElementById('title');
+    <ul id="list"></ul>
+  </main>
 
-    let currentGroups = [];
+  <!-- ===== Script ===== -->
+  <script>
+    fetch('./data.json')
+      .then(r => r.json())
+      .then(data => {
 
-    // ✅ ORDINA LE SEDI (menu a sinistra)
-    Object.keys(data)
-      .sort((a, b) => a.localeCompare(b))
-      .forEach(sede => {
-        const btn = document.createElement('button');
-        btn.textContent = sede;
-        btn.onclick = () => showSede(sede, data[sede]);
-        menu.appendChild(btn);
+        const menu = document.getElementById('menu');
+        const list = document.getElementById('list');
+        const search = document.getElementById('search');
+        const copyBtn = document.getElementById('copyBtn');
+        const title = document.getElementById('title');
+
+        let currentGroups = [];
+
+        // Ordina le sedi
+        Object.keys(data)
+          .sort((a, b) => a.localeCompare(b))
+          .forEach(sede => {
+            const btn = document.createElement('button');
+            btn.textContent = sede;
+
+            btn.onclick = () => {
+              document
+                .querySelectorAll("nav button")
+                .forEach(b => b.classList.remove("active"));
+
+              btn.classList.add("active");
+              showSede(sede, data[sede]);
+            };
+
+            menu.appendChild(btn);
+          });
+
+        function showSede(nome, gruppi) {
+          currentGroups = [...gruppi].sort((a, b) => a.localeCompare(b));
+
+          title.textContent = `Gruppi AD – ${nome} (${currentGroups.length})`;
+          search.value = "";
+          copyBtn.disabled = false;
+
+          render(currentGroups);
+        }
+
+        function render(arr) {
+          list.innerHTML = "";
+          arr.forEach(g => {
+            const li = document.createElement('li');
+            li.textContent = g;
+            list.appendChild(li);
+          });
+        }
+
+        search.oninput = () => {
+          const q = search.value.toLowerCase();
+          render(currentGroups.filter(g => g.toLowerCase().includes(q)));
+        };
+
+        copyBtn.onclick = () => {
+          navigator.clipboard.writeText(currentGroups.join("\n"))
+            .then(() => alert("✅ Gruppi copiati negli appunti"));
+        };
       });
-
-    function showSede(nome, gruppi) {
-      // ✅ ORDINA I GRUPPI A–Z
-      currentGroups = [...gruppi].sort((a, b) => a.localeCompare(b));
-      title.textContent = "Gruppi AD – " + nome;
-      search.value = "";
-      copyBtn.disabled = false;
-      render(currentGroups);
-    }
-
-    function render(arr) {
-      list.innerHTML = "";
-      arr.forEach(g => {
-        const li = document.createElement('li');
-        li.textContent = g;
-        list.appendChild(li);
-      });
-    }
-
-    search.oninput = () => {
-      const q = search.value.toLowerCase();
-      render(currentGroups.filter(g => g.toLowerCase().includes(q)));
-    };
-
-    copyBtn.onclick = () => {
-      navigator.clipboard.writeText(currentGroups.join("\n"))
-        .then(() => alert("✅ Gruppi copiati negli appunti"));
-    };
-  });
-</script>
-
+  </script>
 
 </body>
 </html>
