@@ -1,135 +1,81 @@
-!DOCTYPE html
-html lang=it
-head
-  meta charset=UTF-8
-  titleGruppi ADtitle
-  style
-    body {
-      font-family Arial, sans-serif;
-      margin 0;
-      display flex;
-      height 100vh;
-    }
-    nav {
-      width 260px;
-      background #2c3e50;
-      color white;
-      padding 10px;
-      overflow-y auto;
-    }
-    nav h2 {
-      margin-top 0;
-      font-size 16px;
-    }
-    nav button {
-      width 100%;
-      padding 8px;
-      margin 4px 0;
-      background #34495e;
-      color white;
-      border none;
-      cursor pointer;
-      text-align left;
-    }
-    nav buttonhover {
-      background #1abc9c;
-    }
-    main {
-      flex 1;
-      padding 20px;
-      overflow-y auto;
-    }
-    input {
-      width 100%;
-      padding 8px;
-      margin-bottom 10px;
-    }
-    button.copy {
-      margin-bottom 10px;
-      padding 8px;
-      cursor pointer;
-    }
-    ul {
-      list-style none;
-      padding 0;
-    }
-    li {
-      padding 4px 0;
-      border-bottom 1px solid #ddd;
-      font-family monospace;
-    }
-  style
-head
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Gruppi AD</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; display: flex; height: 100vh; }
+    nav { width: 260px; background: #2c3e50; color: white; padding: 10px; overflow-y: auto; }
+    nav h2 { margin-top: 0; font-size: 16px; }
+    nav button { width: 100%; padding: 8px; margin: 4px 0; background: #34495e; color: white; border: none; cursor: pointer; text-align: left; }
+    nav button:hover { background: #1abc9c; }
+    main { flex: 1; padding: 20px; overflow-y: auto; }
+    input { width: 100%; padding: 8px; margin-bottom: 10px; }
+    button.copy { margin-bottom: 10px; padding: 8px; cursor: pointer; }
+    ul { list-style: none; padding: 0; }
+    li { padding: 4px 0; border-bottom: 1px solid #ddd; font-family: monospace; }
+  </style>
+</head>
+<body>
 
-body
+<nav id="menu">
+  <h2>Sedi</h2>
+</nav>
 
-nav id=menu
-  h2Sedih2
-nav
+<main>
+  <h2 id="title">Gruppi AD</h2>
+  <button class="copy" id="copyBtn" disabled>📋 Copia gruppi</button>
+  <input id="search" placeholder="Cerca gruppo...">
+  <ul id="list"></ul>
+</main>
 
-main
-  h2 id=titleGruppi ADh2
-  button class=copy id=copyBtn disabled📋 Copia gruppibutton
-  input id=search placeholder=Cerca gruppo...
-  ul id=listul
-main
-
-script
-fetch('.data.json')
-  .then(r = {
-    if (!r.ok) throw new Error(HTTP  + r.status);
-    return r.json();
-  })
-  .then(data = {
-
+<script>
+fetch('./data.json')
+  .then(r => r.json())
+  .then(data => {
     const menu = document.getElementById('menu');
     const list = document.getElementById('list');
     const search = document.getElementById('search');
     const copyBtn = document.getElementById('copyBtn');
     const title = document.getElementById('title');
-    let currentGroups = [];
+    let current = [];
 
-    Object.keys(data).forEach(sede = {
-      const btn = document.createElement('button');
-      btn.textContent = sede;
-      btn.onclick = () = showSede(sede, data[sede]);
-      menu.appendChild(btn);
+    Object.keys(data).forEach(sede => {
+      const b = document.createElement('button');
+      b.textContent = sede;
+      b.onclick = () => show(sede, data[sede]);
+      menu.appendChild(b);
     });
 
-    function showSede(nome, gruppi) {
-      currentGroups = gruppi;
-      title.textContent = Gruppi AD –  + nome;
-      search.value = ;
-      render(gruppi);
+    function show(nome, gruppi) {
+      current = gruppi;
+      title.textContent = "Gruppi AD – " + nome;
+      search.value = "";
       copyBtn.disabled = false;
+      render(gruppi);
     }
 
     function render(arr) {
-      list.innerHTML = ;
-      arr.forEach(g = {
+      list.innerHTML = "";
+      arr.forEach(g => {
         const li = document.createElement('li');
         li.textContent = g;
         list.appendChild(li);
       });
     }
 
-    search.oninput = () = {
+    search.oninput = () => {
       const q = search.value.toLowerCase();
-      render(currentGroups.filter(g = g.toLowerCase().includes(q)));
+      render(current.filter(g => g.toLowerCase().includes(q)));
     };
 
-    copyBtn.onclick = () = {
-      const text = currentGroups.join(n);
-      navigator.clipboard.writeText(text)
-        .then(() = alert(✅ Gruppi copiati negli appunti));
+    copyBtn.onclick = () => {
+      navigator.clipboard.writeText(current.join("\n"))
+        .then(() => alert("✅ Gruppi copiati"));
     };
-
-  })
-  .catch(e = {
-    document.body.innerHTML =
-      h2Errore nel caricamento datih2pre + e + pre;
   });
-script
+</script>
 
-body
-html
+</body>
+</html>
+``
