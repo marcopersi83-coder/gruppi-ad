@@ -52,7 +52,7 @@
 
     nav h2 {
       margin-top: 0;
-      font-size: 14px;
+      font-size: 13px;
       text-transform: uppercase;
       letter-spacing: 1px;
       color: #9ca3af;
@@ -84,9 +84,18 @@
       overflow-y: auto;
     }
 
-    h2 {
-      margin-top: 0;
+    .header {
+      margin-bottom: 20px;
+    }
+
+    .header h2 {
+      margin: 0;
       font-weight: 500;
+    }
+
+    .header small {
+      color: #6b7280;
+      font-size: 13px;
     }
 
     .toolbar {
@@ -118,14 +127,20 @@
       cursor: not-allowed;
     }
 
+    /* ===== Card ===== */
+    .card {
+      background: white;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+      padding: 16px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    }
+
     /* ===== List ===== */
     ul {
       list-style: none;
       padding: 0;
       margin: 0;
-      background: white;
-      border-radius: 6px;
-      border: 1px solid #e5e7eb;
     }
 
     li {
@@ -133,10 +148,22 @@
       border-bottom: 1px solid #e5e7eb;
       font-family: Consolas, monospace;
       font-size: 13px;
+      transition: background 0.15s;
+    }
+
+    li:hover {
+      background: #f9fafb;
     }
 
     li:last-child {
       border-bottom: none;
+    }
+
+    .empty {
+      text-align: center;
+      color: #9ca3af;
+      padding: 40px;
+      font-size: 14px;
     }
   </style>
 </head>
@@ -156,14 +183,22 @@
 
   <!-- ===== Main ===== -->
   <main>
-    <h2 id="title">Sedi interne</h2>
+    <div class="header">
+      <h2 id="title">Sedi interne</h2>
+      <small>Gestione e consultazione gruppi Active Directory</small>
+    </div>
 
     <div class="toolbar">
       <input id="search" placeholder="Cerca gruppo...">
       <button class="copy" id="copyBtn" disabled>📋 Copia</button>
     </div>
 
-    <ul id="list"></ul>
+    <div class="card">
+      <ul id="list"></ul>
+      <div id="empty" class="empty" style="display:none;">
+        Nessun gruppo disponibile
+      </div>
+    </div>
   </main>
 
   <!-- ===== Script ===== -->
@@ -177,6 +212,7 @@
         const search = document.getElementById("search");
         const copyBtn = document.getElementById("copyBtn");
         const title = document.getElementById("title");
+        const empty = document.getElementById("empty");
 
         let currentGroups = [];
         let internal = {};
@@ -212,7 +248,7 @@
           menu.innerHTML = "<h2>Sedi</h2>";
 
           Object.keys(source)
-            .sort((a, b) => a.localeCompare(b))
+            .sort((a,b) => a.localeCompare(b))
             .forEach(name => {
               const btn = document.createElement("button");
               btn.textContent = name;
@@ -240,6 +276,8 @@
 
         function render(arr) {
           list.innerHTML = "";
+          empty.style.display = arr.length ? "none" : "block";
+
           arr.forEach(g => {
             const li = document.createElement("li");
             li.textContent = g;
@@ -263,6 +301,7 @@
             tab.classList.add("active");
 
             list.innerHTML = "";
+            empty.style.display = "none";
             copyBtn.disabled = true;
 
             if (tab.dataset.type === "external") {
@@ -281,3 +320,4 @@
 
 </body>
 </html>
+``
