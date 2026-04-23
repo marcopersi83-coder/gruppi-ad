@@ -1,0 +1,193 @@
+{
+  "Admin IET": [
+    "ADMIN IET",
+    "Account Operators",
+    "AdminsFileShare",
+    "AL-KLAdmins",
+    "AL-SCCM-ALFASIGMA",
+    "AL-SCCM-TOPNETWORK",
+    "av.administrator",
+    "Client Admins",
+    "Consulenti_ICT",
+    "Consultants",
+    "EXCELCQ - IT Operation",
+    "FSG-ADMINISTRATORS",
+    "IT Global Client Admin",
+    "Organization Management",
+    "Remote Management Users"
+  ],
+
+  "Pomezia": [
+    "All_at_Pomezia_Employees",
+    "AS-SPPS-Users",
+    "IT04-UMB-Basic",
+    "IT04 Local Users",
+    "IT04-Wireless-Users",
+    "IT04-WS-Basic",
+    "IT04_MFA_Users",
+    "MDM",
+    "Totem",
+    "Al-Vpn-Users"
+  ],
+
+  "Bologna": [
+    "All_at_Bologna_Employees",
+    "AS-SPPS-Users",
+    "IT01-UMB-Basic",
+    "IT01 Local Users",
+    "IT01-Wireless-Users",
+    "IT01-WS-Basic",
+    "IT01_MFA_Users",
+    "MDM",
+    "Totem",
+    "Al-Vpn-Users"
+  ],
+
+  "Milano": [
+    "All_at_Milano_Employees",
+    "AS-SPPS-Users",
+    "IT03-UMB-Basic",
+    "IT03 Local Users",
+    "IT03-Wireless-Users",
+    "IT03-WS-Basic",
+    "IT03_MFA_Users",
+    "MDM",
+    "Totem",
+    "Al-Vpn-Users"
+  ],
+
+  "Alanno": [
+    "All_at_Alanno_Employees",
+    "AS-SPPS-Users",
+    "IT02-UMB-Basic",
+    "IT02 Local Users",
+    "IT02-Wireless-Users",
+    "IT02-WS-Basic",
+    "IT02_MFA_Users",
+    "MDM",
+    "Totem",
+    "Al-Vpn-Users"
+  ],
+
+  "Trezzano": [
+    "All_at_TrezzanoRosa_Employees",
+    "IT07-UMB-Basic",
+    "IT07 Local Users",
+    "IT07_MFA_Users",
+    "MDM",
+    "Totem",
+    "VPNUsersFortinet"
+  ],
+
+  "Sermoneta": [
+    "All_at_Sermoneta_Employees",
+    "IT05-UMB-Basic",
+    "IT05 Local Users",
+    "IT05_MFA_Users",
+    "IT05-VPN-Users",
+    "IT05-Wireless-Users",
+    "IT05-WS-Basic"
+  ],
+
+  "Polonia": [
+    "All_at_Poland_Users",
+    "AS-SPPS-Users",
+    "PL01-UMB-Basic",
+    "PL01 Local Users",
+    "PL01-Wireless-Users",
+    "PL01_MFA_Users",
+    "MDM_Polonia",
+    "Totem",
+    "Al-Vpn-Users"
+  ],
+
+  "CZ": [
+    "All_at_Czech_Users",
+    "AS-SPPS-Users",
+    "CZ01-UMB-Basic",
+    "CZ01 Local Users",
+    "CZ01-Wireless-Users",
+    "CZ01_MFA_Users",
+    "MDM_CZ",
+    "Totem",
+    "Al-Vpn-Users"
+  ],
+
+  "Francia": [
+    "AS-SPPS-Users",
+    "FR01-UMB-Basic",
+    "FR01 Local Users",
+    "FR01-Wireless-Users",
+    "FR01_MFA_Users",
+    "MDM_FR",
+    "Totem",
+    "Al-Vpn-Users"
+  ],
+
+  "Germania": [
+    "All_at_Germany",
+    "DE01 Local Users",
+    "DE01_MFA_Users",
+    "MDM_Germania",
+    "AS-SPPS-Users",
+    "Totem",
+    "Al-Vpn-Users"
+  ],
+
+  "Spagna": [
+    "All_at_Spain_Users",
+    "AL-VPN-Users",
+    "ES01 Local Users",
+    "ES01-UMB-Basic",
+    "ES01_MFA_Users",
+    "ES01-VPN-Users",
+    "ES01-Wireless-Users"
+  ],
+
+  "UK": [
+    "Alfasigma_Belgium_Employees",
+    "All_at_Jyseleca_Abroad",
+    "AL-VPN-Users",
+    "FS_Jyseleca",
+    "GLPS_MFA_Users",
+    "MDM",
+    "IT00-CA-Require_MFA_For_Internal_Users_Include"
+  ],
+
+  "Messico": [
+    "All_at_Mexico_Users",
+    "MX01-UMB-Basic",
+    "MX01 Local Users",
+    "MX01_MFA_Users",
+    "MX01-VPN-Users",
+    "MX01-Wireless-Users"
+  ],
+
+  "Ungheria": [
+    "All_At_Hungary_Employees",
+    "AL-VPN-Users",
+    "HU01_MFA_Users",
+    "MDM",
+    "MDM_Veeva_CRM"
+  ],
+
+  "Reply": [
+    "Consultants",
+    "VPN_Reply",
+    "IT00-CA-Require_MFA_For_External_Users_Include"
+  ],
+
+  "Accenture": [
+    "Consultants",
+    "VPN_Accenture",
+    "IT00-CA-Require_MFA_For_External_Users_Include"
+  ],
+
+  "KPMG": [
+    "Consultants",
+    "VPN_KPMG",
+    "Fleet_2025_2026",
+    "IT00-CA-Require_MFA_For_External_Users_Include"
+  ]
+}
+``

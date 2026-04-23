@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Gruppi AD</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      display: flex;
+      height: 100vh;
+    }
+    nav {
+      width: 260px;
+      background: #2c3e50;
+      color: white;
+      padding: 10px;
+      overflow-y: auto;
+    }
+    nav h2 {
+      font-size: 16px;
+      margin-top: 0;
+    }
+    nav button {
+      width: 100%;
+      padding: 8px;
+      margin: 4px 0;
+      background: #34495e;
+      color: white;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+    }
+    nav button:hover {
+      background: #1abc9c;
+    }
+    main {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      padding: 6px 0;
+      border-bottom: 1px solid #ddd;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <h2>Sedi</h2>
+  <div id="menu"></div>
+</nav>
+
+<main>
+  <h2>Gruppi AD</h2>
+  <input type="text" id="search" placeholder="Cerca gruppo...">
+  <ul id="list"></ul>
+</main>
+
+<script>
+fetch('data.json')
+  .then(response => response.json())
+  .then(data => {
+    const menu = document.getElementById('menu');
+    const list = document.getElementById('list');
+    const search = document.getElementById('search');
+    let currentGroups = [];
+
+    Object.keys(data).forEach(sede => {
+      const btn = document.createElement('button');
+      btn.textContent = sede;
+      btn.onclick = () => showGroups(data[sede]);
+      menu.appendChild(btn);
+    });
+
+    function showGroups(groups) {
+      currentGroups = groups;
+      render(groups);
+      search.value = "";
+    }
+
+    function render(groups) {
+      list.innerHTML = "";
+      groups.forEach(g => {
+        const li = document.createElement('li');
+        li.textContent = g;
+        list.appendChild(li);
+      });
+    }
+
+    search.addEventListener('input', () => {
+      const q = search.value.toLowerCase();
+      render(currentGroups.filter(g => g.toLowerCase().includes(q)));
+    });
+  })
+  .catch(err => {
+    alert("Errore nel caricamento di data.json");
+    console.error(err);
+  });
+</script>
+
+</body>
+</html>
+``
