@@ -68,7 +68,6 @@
       border-radius: 4px;
       cursor: pointer;
       text-align: left;
-      transition: background 0.2s;
     }
 
     nav button:hover,
@@ -80,9 +79,9 @@
     main {
       flex: 1;
       padding: 24px;
-      overflow-y: auto;
       margin-left: 280px;
       box-sizing: border-box;
+      overflow-y: auto;
     }
 
     h2 {
@@ -173,23 +172,36 @@
       .then(r => r.json())
       .then(data => {
 
-        const menu = document.getElementById('menu');
-        const list = document.getElementById('list');
-        const search = document.getElementById('search');
-        const copyBtn = document.getElementById('copyBtn');
-        const title = document.getElementById('title');
+        const menu = document.getElementById("menu");
+        const list = document.getElementById("list");
+        const search = document.getElementById("search");
+        const copyBtn = document.getElementById("copyBtn");
+        const title = document.getElementById("title");
 
         let currentGroups = [];
         let internal = {};
         let external = {};
 
+        function normalizeName(name) {
+          return name
+            .normalize("NFKD")
+            .replace(/\s+/g, " ")
+            .trim()
+            .toLowerCase();
+        }
+
         function isExternal(name) {
-          return name.toLowerCase().includes("ext");
+          return /\bext\b/.test(normalizeName(name));
         }
 
         Object.keys(data).forEach(key => {
           if (isExternal(key)) {
-            const cleanName = key.replace(/\s*ext\s*/i, "").trim();
+            const cleanName = key
+              .normalize("NFKD")
+              .replace(/\bext\b/i, "")
+              .replace(/\s+/g, " ")
+              .trim();
+
             external[cleanName] = data[key];
           } else {
             internal[key] = data[key];
@@ -200,7 +212,7 @@
           menu.innerHTML = "<h2>Sedi</h2>";
 
           Object.keys(source)
-            .sort((a,b) => a.localeCompare(b))
+            .sort((a, b) => a.localeCompare(b))
             .forEach(name => {
               const btn = document.createElement("button");
               btn.textContent = name;
@@ -229,7 +241,7 @@
         function render(arr) {
           list.innerHTML = "";
           arr.forEach(g => {
-            const li = document.createElement('li');
+            const li = document.createElement("li");
             li.textContent = g;
             list.appendChild(li);
           });
@@ -269,4 +281,3 @@
 
 </body>
 </html>
-``
