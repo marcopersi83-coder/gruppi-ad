@@ -356,8 +356,6 @@
                     "MDM_ZERO_Touch",
                     "MDM_LastPass"
                 ],
-    ,
-
 "Agenti": [
     "All_at_CHC_Agenti",
     "AS-SPPS-Users",
@@ -378,13 +376,11 @@
     "IT01-Wireless-Users",
     "IT01-VPN-Users"
 ],
-
 "USA": [
     "All_at_Intercept_employees",
     "AL-VPN-Users",
     "US02_MFA_Users"
 ],
-
 "ADMIN NOC_DC ext": [
     "Admin IAAS Vargroup",
     "Admin VarGroup",
@@ -410,7 +406,6 @@
     "VARGROUP",
     "VARGROUP-SERVER-ADMIN"
 ],
-
 "NOC_DC ext": [
     "Alert_Azure",
     "AL-VPN-Users",
@@ -426,7 +421,6 @@
     "VARGroup",
     "VPN_VarGroup"
 ],
-
 "Utenze Agilent ext": [
     "AdminsAgilent",
     "AS-SPPS-Users",
@@ -442,7 +436,6 @@
     "IT04-WS-Social",
     "IT04-WS-Unrestricted"
 ],
-
 "Utenze EXT Generico ext": [
     "IT00-CA-Require_MFA_For_External_Users_Include",
     "Consultants",
