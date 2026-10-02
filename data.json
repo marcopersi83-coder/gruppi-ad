@@ -356,13 +356,7 @@
                     "MDM_ZERO_Touch",
                     "MDM_LastPass"
                 ],
-    "Generico ext":  [
-        
-"IT00-CA-Require_MFA_For_External_Users_Include",
-"Consultants",
-"VPN_consulenti"
-],
-  ,
+    ,
 
 "Agenti": [
     "All_at_CHC_Agenti",
@@ -381,7 +375,6 @@
     "Utenti_Alfasigma_IT04",
     "All_at_OTC_Agenti",
     "IT01-UMB-Basic",
-    "IT01 Local Users",
     "IT01-Wireless-Users",
     "IT01-VPN-Users"
 ],
@@ -454,4 +447,5 @@
     "IT00-CA-Require_MFA_For_External_Users_Include",
     "Consultants",
     "VPN_consulenti"
-]      }
+]
+        }
