@@ -356,10 +356,10 @@
                     "MDM_ZERO_Touch",
                     "MDM_LastPass"
                 ],
-}
       ],
     "Generico ext":  [
         
 "IT00-CA-Require_MFA_For_External_Users_Include",
 "Consultants",
 "VPN_consulenti"
+}
